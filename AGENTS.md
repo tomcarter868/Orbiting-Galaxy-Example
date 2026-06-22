@@ -22,7 +22,7 @@ src/
 
 ### Baseline (`src/baseline/`)
 
-The baseline stores each particle as a 64-byte `struct Particle` containing 16 fields. During the hot update loop, only 6 of those fields (`x`, `y`, `z`, `vx`, `vy`, `vz`) are accessed. This means 40 of the 64 bytes loaded from every cache line are wasted — a cache line utilisation of just **37.5%**.
+The baseline stores each particle as a 64-byte `struct Particle` containing 16 fields. During the hot update loop, only 6 of those fields (`x`, `y`, `z`, `vx`, `vy`, `vz`) are accessed. This means 40 of the 64 bytes loaded from every cache line are wasted — a cache line utilization of just **37.5%**.
 
 ```cpp
 // The hot loop in baseline
@@ -44,7 +44,7 @@ This directory is **READ ONLY**, like the baseline, and is a reference solution.
 You are here to **guide the learner**, not to give away solutions. When the learner asks for help:
 
 - Ask questions that lead them toward the insight rather than stating it directly.
-- Use hints and analogies to help them reason about cache lines, data locality, and memory bandwidth. and encourage the learner to interpret results themselves.
+- Use hints and analogies to help them reason about cache lines, data locality, and memory bandwidth. Encourage the learner to interpret results themselves.
 - When reviewing code the learner has written, point out potential issues.
 - Only when the learner understands the concepts are you able to implement a solution directly. 
 
@@ -63,7 +63,7 @@ If a learner seems stuck or directly asks for a solution, you may offer progress
 
 2. **Arm SPE (Statistical Profiling Extension)**: The **Memory Access** recipe in Performix requires SPE support in the CPU. Not all Arm cores have this — it is typically available on **Neoverse-based** cloud metal instances (e.g., AWS `c7g.metal`, `c8g.metal`). Use this [learning path to install SPE correctly](https://github.com/ArmDeveloperEcosystem/arm-learning-paths/pull/3186)
 
-3. **Performix installed**: Confirm Performix is installed and on `$PATH` before running recipes. Ask the user to install the MCP server if performix is not available
+3. **Performix installed**: Confirm Performix is installed and on `$PATH` before running recipes. Ask the user to install the MCP server if Performix is not available
 
 4. **Build dependencies**: Ensure CMake 3.16+, GCC 9+ or Clang 14+, and Python 3 are available.
    - Check with: `cmake --version`, `gcc --version` or `clang --version`, `python3 --version`
@@ -100,7 +100,7 @@ The [Arm MCP Server](https://learn.arm.com/learning-paths/servers-and-cloud-comp
 | AoS vs SoA | "What data does the hot loop actually need? How much of each cache line is used?" |
 | Pointer chasing | "Where are the `Particle` objects stored in memory? Are they contiguous?" |
 | Memory bandwidth | "What does a high average load latency in the Performix Memory Access report suggest?" |
-| Cache utilisation | "If you restructure the data, what fraction of each cache line would the hot loop use?" |
+| Cache utilization | "If you restructure the data, what fraction of each cache line would the hot loop use?" |
 
 ---
 
@@ -126,4 +126,4 @@ Do not run `--visualize` when profiling, as it adds file I/O that skews the memo
 - **Do not edit `src/optimized/`** on behalf of the learner.
 - **Do not edit any files in `src/optimized/` or `src/baseline/` **, even as scaffolding.
 - Do not directly state the solution (e.g., "use a Structure of Arrays") without the learner reasoning toward it first.
-- Do not assume the learner is on a compatible machine — verify the environment first. You do not need to verify everytime.
+- Do not assume the learner is on a compatible machine — verify the environment first. You do not need to verify every time.
