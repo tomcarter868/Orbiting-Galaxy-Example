@@ -6,7 +6,7 @@ This project demonstrates the performance impact of data layout choices in memor
     <img src="./assets/galaxy_compressed.gif" alt="Galaxy simulation animation" />
 </p>
 
-<p align="center"><em>Galaxy evolution over 1,000 visualisation iterations. Inner particles orbit faster, causing the spiral arms to wind up over time. This GIF is lossy-compressed for repository size, so minor visual artifacts are expected.</em></p>
+<p align="center"><em>Galaxy evolution over 1,000 visualization iterations. Inner particles orbit faster, causing the spiral arms to wind up over time. This GIF is lossy-compressed for repository size, so minor visual artifacts are expected.</em></p>
 
 ---
 
@@ -24,11 +24,11 @@ The algorithm is intentionally simple: three multiply-adds per particle with no 
 
 ### Baseline: Array of Structures (`baseline`)
 
-Each particle is stored as a 64-byte struct containing 16 fields. The hot update loop only reads and writes 6 of those fields (24 bytes). The remaining 40 bytes are loaded into cache on every access but never used, resulting in 37.5% cache line utilisation.
+Each particle is stored as a 64-byte struct containing 16 fields. The hot update loop only reads and writes 6 of those fields (24 bytes). The remaining 40 bytes are loaded into cache on every access but never used, resulting in 37.5% cache line utilization.
 
-### Optimised: Structure of Arrays (`optimized`)
+### Optimized: Structure of Arrays (`optimized`)
 
-Position and velocity data are stored in separate contiguous arrays. The hot update loop touches only those arrays, so every byte loaded from cache is useful data, achieving 100% cache line utilisation. In this course, learners create this implementation in `src/optimized/`.
+Position and velocity data are stored in separate contiguous arrays. The hot update loop touches only those arrays, so every byte loaded from cache is useful data, achieving 100% cache line utilization. In this course, learners create this implementation in `src/optimized/`.
 
 ---
 
@@ -55,7 +55,7 @@ make -j"$(nproc)"
 
 ## Run
 
-To generate a visualisation of the galaxy simulation, pass the `--visualize` flag:
+To generate a visualization of the galaxy simulation, pass the `--visualize` flag:
 
 ```bash
 ./build/baseline --visualize
